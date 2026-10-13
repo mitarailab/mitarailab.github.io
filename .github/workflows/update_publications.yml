@@ -11,11 +11,15 @@ on:
 jobs:
   update_publications:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages  
+    permissions:
+      contents: write
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+    - name: Configure commit author
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
     
     # - name: Set up Ruby
     #   uses: ruby/setup-ruby@v1
@@ -170,14 +174,7 @@ jobs:
     
     - name: Commit and Push Changes
       if: env.changed == 'yes'
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
         git add publications.md
         git commit -m "Update publications"
         git push origin main
