@@ -20,9 +20,10 @@ markdown: kramdown          # もともとデフォルト
 kramdown:
   math_engine: mathjax      # “$$ … $$” や “$ … $” を数式として扱う
 
-# plugins:
-#   - jekyll-feed
-#   - jekyll-seo-tag
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Theme-specific settings
 
