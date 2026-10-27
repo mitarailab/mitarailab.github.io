@@ -61,6 +61,7 @@ title: Publications
 
 ## arXiv preprints
 
+- Yu Yamaoka, Weng Ian Chan, Kosuke Mitarai, [Representation Geometry and Inductive Biases in Quantum Classifiers across Classical Visual Benchmarks](https://arxiv.org/abs/arXiv:2610.17722), arXiv:2610.17722 (2026)
 - Masahiko Kamoshita, Kosuke Mitarai, [QSCI-CMP: Quantum-Selected Configuration Interaction with Chemically Motivated Preselection](https://arxiv.org/abs/arXiv:2608.05766), arXiv:2608.05766 (2026)
 - Kohei Numata, Wataru Mizukami, Kosuke Mitarai, Keisuke Fujii, Yutaka Imamura, [Quantum machine learning interatomic potential: Application of variational quantum algorithm](https://arxiv.org/abs/arXiv:2607.27841), arXiv:2607.27841 (2026)
 - Kenya Sakka, Wataru Mizukami, Kosuke Mitarai, [An LLM System for Autonomous Variational Quantum Circuit Design](https://arxiv.org/abs/arXiv:2606.13380), arXiv:2606.13380 (2026)
