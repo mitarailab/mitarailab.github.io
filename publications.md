@@ -61,6 +61,7 @@ title: Publications
 
 ## arXiv preprints
 
+- Keitaro Anai, Akimoto Nakayama, Shintaro Ooka, Hiroko Tomoda, Yuto Morohoshi, Yohji Chin, Shigehito Miki, Masahiro Yabuno, Hirotaka Terai, Peter van Loock, Kosuke Mitarai, Shuntaro Takeda, [Provably efficient experimental classification of quantum data with quantum kernels](https://arxiv.org/abs/arXiv:2610.39350), arXiv:2610.39350 (2026)
 - Yu Yamaoka, Weng Ian Chan, Kosuke Mitarai, [Representation Geometry and Inductive Biases in Quantum Classifiers across Classical Visual Benchmarks](https://arxiv.org/abs/arXiv:2610.17722), arXiv:2610.17722 (2026)
 - Masahiko Kamoshita, Kosuke Mitarai, [QSCI-CMP: Quantum-Selected Configuration Interaction with Chemically Motivated Preselection](https://arxiv.org/abs/arXiv:2608.05766), arXiv:2608.05766 (2026)
 - Kohei Numata, Wataru Mizukami, Kosuke Mitarai, Keisuke Fujii, Yutaka Imamura, [Quantum machine learning interatomic potential: Application of variational quantum algorithm](https://arxiv.org/abs/arXiv:2607.27841), arXiv:2607.27841 (2026)
