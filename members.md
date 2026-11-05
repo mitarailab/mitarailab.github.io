@@ -70,6 +70,7 @@ permalink: /members/
 |-----------------|------|--------------------------------------------|
 | 山岡 悠          | 特任研究員 / QIQB 所属 |  [researchmap](https://researchmap.jp/yu-yamaoka)/[個人HP](https://sites.google.com/view/yu-yamaoka)|
 | 作花 健也        | 特任研究員 / QIQB 所属 |  |
+| 関 元樹          | 特任研究員 / QIQB 所属 | [個人HP](https://sekimotoki.com) |
 | Yu Huan         | D3   |                                            |
 | 諸星 裕登       | D3   |                                            |
 | 中山 昌勲       | D3   | [researchmap](https://researchmap.jp/qml_penguin) |
