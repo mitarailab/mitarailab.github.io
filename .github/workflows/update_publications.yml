@@ -31,10 +31,30 @@ jobs:
     #     gem install bundler
     #     bundle install
     
-    - name: Fetch Data from ResearchMap
+    - name: Fetch ResearchMap data
+      id: researchmap
       run: |
-        # Use curl to fetch data from the ResearchMap API
-        API_RESPONSE=$(curl -s -X GET "https://api.researchmap.jp/kosuke-mitarai/published_papers")
+        # Fetch both datasets before changing any published content.
+        for resource in published_papers misc; do
+          if bash .github/scripts/fetch_researchmap.sh "https://api.researchmap.jp/kosuke-mitarai/$resource" > "$RUNNER_TEMP/researchmap-$resource.json"; then
+            continue
+          else
+            status=$?
+            if [[ "$status" -eq 75 ]]; then
+              echo "available=false" >> "$GITHUB_OUTPUT"
+              echo "::warning::ResearchMap is temporarily unavailable. Keeping existing publications and news; the next daily run will retry."
+              echo "ResearchMap was unavailable after three attempts. Publications and news were left unchanged. The next daily run will retry automatically." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            exit "$status"
+          fi
+        done
+        echo "available=true" >> "$GITHUB_OUTPUT"
+
+    - name: Fetch Data from ResearchMap
+      if: steps.researchmap.outputs.available == 'true'
+      run: |
+        API_RESPONSE=$(cat "$RUNNER_TEMP/researchmap-published_papers.json")
         
         # Parse the JSON response using jq and extract relevant data
         PAPERS=$(echo "$API_RESPONSE" | jq -c '.items[]')
@@ -67,9 +87,9 @@ jobs:
           fi
         done <<< "$PAPERS"
     - name: Fetch Misc Data from ResearchMap
+      if: steps.researchmap.outputs.available == 'true'
       run: |
-        # Use curl to fetch data from the ResearchMap API for misc entries
-        MISC_API_RESPONSE=$(curl -s -X GET "https://api.researchmap.jp/kosuke-mitarai/misc")
+        MISC_API_RESPONSE=$(cat "$RUNNER_TEMP/researchmap-misc.json")
         
         # Debug output
         # echo "MISC_API_RESPONSE: $MISC_API_RESPONSE"
@@ -153,10 +173,12 @@ jobs:
 
 
     - name: Print Diff
+      if: steps.researchmap.outputs.available == 'true'
       run: git diff publications.md
     
     - name: Check for Changes
       id: check_changes
+      if: steps.researchmap.outputs.available == 'true'
       run: |
         git diff publications.md | grep '^+' | grep -v '+++' | while read line; do
           # Process each changed line to extract and store relevant information
@@ -173,13 +195,14 @@ jobs:
         fi
     
     - name: Commit and Push Changes
-      if: env.changed == 'yes'
+      if: steps.researchmap.outputs.available == 'true' && env.changed == 'yes'
       run: |
         git add publications.md
         git commit -m "Update publications"
         git push origin main
 
     - name: Generate New Posts
+      if: steps.researchmap.outputs.available == 'true'
       run: |
         if [ -f diff.txt ]; then
           created_files=()
